@@ -1,8 +1,6 @@
 # React-Redux with Sagas
 
-> **PLEASE COMMENT YOUR CODE.** Do not clone this repository. Instead, download the zip, extract the contents, `git init`, `git add .`, `git commit -m "initial commit - base project"` and add your remote. Please do this before you leave for the day.
-
-For this weekend challenge you'll be building a movie application!
+For this weekend challenge I'll be building a movie application.
 We'll be able to see movies that exist in our DB. We'll also be able to see detailed view for each individual movie, including genres associated with that movie. We'll also be able to edit our movie's information.
 
 ## Video Wireframe
