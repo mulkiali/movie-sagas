@@ -9,7 +9,7 @@ class MovieList extends Component {
   componentDidMount(){
       this.getMovies()
   }
-
+//dispatch saga to call movies
     getMovies = () => {
         this.props.dispatch({
            type: "FETCH_MOVIES", payload: this.state.movieList
@@ -25,7 +25,7 @@ class MovieList extends Component {
     }
 
   render() {
-
+//map over data from movies reducer to show the list of movies
     return (
       <div className="MovieList">
       <ul>

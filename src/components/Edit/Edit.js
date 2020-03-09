@@ -21,7 +21,6 @@ class Edit extends Component {
         })
     }
 
-    // dispatch with ID from click from details reducer
     handleSaveChange = (id) => {
         console.log('handle save changes clicked');
         //return if description or name are blank, tell user to fill out both
@@ -55,10 +54,9 @@ class Edit extends Component {
     render() {
         return (
             <div>
-                {/* use id from redux store details reducer to send to sagas to DB with cancel and save buttons */}
+                
                 <button onClick={() => this.handleCancelChange(this.props.genres.id)}>Cancel Changes</button>
                 <button onClick={() => this.handleSaveChange(this.props.genres.id)}>Save Changes</button>
-                {/* save inputs in local state before dispatch on button click */}
                 <p>Change movie name:</p>
                 <textarea onChange={this.handleNameChange}/>
                 <p>Change movie description:</p>
@@ -71,6 +69,7 @@ class Edit extends Component {
 const mapStateToProps = (reduxStore) => {
     return {
         genres: reduxStore.genres,
+        details: reduxStore.details
     }
 }
 
