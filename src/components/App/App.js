@@ -5,6 +5,7 @@ import Details from '../Details/Details';
 import Edit from '../Edit/Edit';
 import MovieList from '../MovieList/MovieList';
 
+
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
