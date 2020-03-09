@@ -18,10 +18,10 @@ class Details extends Component {
             
                     {this.props.genres.map(genre => {
                         return (
-                            <li key={genre.id}>
-                            <p> {genre.name}</p>
-                            <p> {genre.title}</p>
-                            </li>
+                            <div key={genre.id}>
+                            <p> {genre.name}, {genre.title}</p>
+                            <p> {genre.description}</p>
+                            </div>
                         )
                     })}
                 </div>

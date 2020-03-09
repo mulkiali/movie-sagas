@@ -16,6 +16,7 @@ import axios from 'axios';
 function* rootSaga() {
    yield takeEvery("FETCH_MOVIES", fetchMovies);
    yield takeEvery("FETCH_GENRES", fetchGenres);
+   yield takeEvery("CHANGE_INFO", edit);
 }
 
 function* fetchMovies(action){
@@ -36,6 +37,16 @@ function* fetchGenres(action){
     }
 }
 
+function* edit(action){
+    const id = action.payload.id
+    console.log('in payload', id)
+    try{
+    const response = yield axios.put(`/edit/${id}`);
+    yield put({type: 'FETCH_GENRES', payload: response.data});
+    }catch(error){
+        console.log('error editing', error)
+    }
+}
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
