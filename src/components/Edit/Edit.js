@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 
 class Edit extends Component {
     state = {
-        description: '',
-        name: '',
-        id: 0
+        description: 0,
+        name: 0
     }
   
 
@@ -26,7 +25,7 @@ class Edit extends Component {
     handleSaveChange = (id) => {
         console.log('handle save changes clicked');
         //return if description or name are blank, tell user to fill out both
-        if (this.state.description === '' || this.state.name === '') {
+        if (this.state.description === null || this.state.name === null) {
             alert('Updated name and description needed to save');
             return;
         }
@@ -36,15 +35,19 @@ class Edit extends Component {
             payload: this.state
         })
         //dispatch to get_details to re-load details page with new DB info
+        this.props.dispatch({
+            type: 'FETCH_DETAILS',
+            payload: this.state
+        })
       
         this.props.history.push('/details')
     }
 
     //on cancel, reload details page, same dispatch as click on the details from home page
-    handleCancelChange = (id) => {
+    handleCancelChange = () => {
         this.props.dispatch({
-            type: 'SET_GENRES',
-            payload: id
+            type: 'FETCH_DETAILS',
+            payload: this.state
         })
         this.props.history.push(`/details`)
     }
@@ -57,7 +60,7 @@ class Edit extends Component {
                 <button onClick={() => this.handleSaveChange(this.props.genres.id)}>Save Changes</button>
                 {/* save inputs in local state before dispatch on button click */}
                 <p>Change movie name:</p>
-                <textarea onChange={this.handleNameChange} />
+                <textarea onChange={this.handleNameChange}/>
                 <p>Change movie description:</p>
                 <textarea  onChange={this.handleDescriptionChange} />
             </div>

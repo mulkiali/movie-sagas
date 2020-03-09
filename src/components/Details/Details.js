@@ -16,11 +16,11 @@ class Details extends Component {
         <p>Details</p>
         <div>
             
-                    {this.props.genres.map(genre => {
+                    {this.props.details.map(details => {
                         return (
-                            <div key={genre.id}>
-                            <p> {genre.name}, {genre.title}</p>
-                            <p> {genre.description}</p>
+                            <div key={details.id}>
+                            <p> {details.name}, {details.title}</p>
+                            <p> {details.description}</p>
                             </div>
                         )
                     })}
@@ -35,7 +35,7 @@ class Details extends Component {
 }
 
 const getStore = reduxState => ({
-    genres: reduxState.genres,
+    details: reduxState.details,
     movies: reduxState.movies
 });
 

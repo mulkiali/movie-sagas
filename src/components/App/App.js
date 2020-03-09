@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import {makeStyles} from '@material-ui/styles'
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
 import Details from '../Details/Details';
 import Edit from '../Edit/Edit';
@@ -11,6 +12,7 @@ class App extends Component {
   render() {
     return (
      <Router>
+     
       <div className="App">
         <p>Mulki's Movie List</p>
       </div>

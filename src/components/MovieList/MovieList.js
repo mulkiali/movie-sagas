@@ -5,7 +5,7 @@ class MovieList extends Component {
     state={
         movieList: '',
     }
-
+//on page load shows movies from DB
   componentDidMount(){
       this.getMovies()
   }
@@ -16,10 +16,10 @@ class MovieList extends Component {
         })
     }
 
-
+//sends user to details page when clicking the movie poster
     handleClick = (id) => {
        this.props.dispatch({
-        type: "FETCH_GENRES", payload: id
+        type: "FETCH_DETAILS", payload: id
      })
      this.props.history.push('/details');
     }
