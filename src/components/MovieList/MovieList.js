@@ -17,7 +17,7 @@ class MovieList extends Component {
     }
 
 //sends user to details page when clicking the movie poster
-    handleClick = (id) => {
+    handleClick = (id,) => {
        this.props.dispatch({
         type: "FETCH_DETAILS", payload: id
      })

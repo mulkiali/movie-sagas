@@ -16,7 +16,7 @@ import axios from 'axios';
 function* rootSaga() {
    yield takeEvery("FETCH_MOVIES", fetchMovies);
    yield takeEvery("FETCH_DETAILS", fetchDetails);
-   yield takeEvery("CHANGE_INFO", edit);
+   yield takeEvery("UPDATE_INFO", edit);
 }
 
 function* fetchMovies(action){
@@ -30,8 +30,10 @@ function* fetchDetails(action){
     const id = action.payload
     console.log('in payload', id)
     try{
-    const response = yield axios.get(`/genres/${id}`);
-    yield put({type: 'SET_DETAILS', payload: response.data});
+        const genreResponse = yield axios.get(`/genres/${id}`);
+        yield put({ type: 'SET_DETAILS', payload: genreResponse.data});
+        const movieResponse = yield axios.get(`/movies/${id}`);
+        yield put({ type: 'SET_GENRES', payload: movieResponse.data });
     }catch(error){
         console.log('error getting genres', error)
     }
@@ -39,8 +41,9 @@ function* fetchDetails(action){
 
 function* edit(action){
     try{
-    yield axios.put(`/edit/${action.payload}`);
+    yield axios.put(`/edit/${action.payload}`, action.payload);
     yield put({type: 'FETCH_DETAILS'});
+    console.log('payload,', action.payload)
     }catch(error){
         console.log('error editing', error)
     }
@@ -76,6 +79,7 @@ const details = (state = [], action) => {
             return state;
     }
 }
+
 
 
 

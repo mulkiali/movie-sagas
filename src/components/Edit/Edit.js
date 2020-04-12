@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 class Edit extends Component {
     state = {
-        description: 0,
-        name: 0
+        description: '',
+        name: ''
     }
   
 
@@ -22,7 +22,7 @@ class Edit extends Component {
     }
 
     handleSaveChange = (id) => {
-        console.log('handle save changes clicked');
+        console.log('handle save changes clicked', this.props.details.id);
         //return if description or name are blank, tell user to fill out both
         if (this.state.description === null || this.state.name === null) {
             alert('Updated name and description needed to save');
@@ -30,7 +30,7 @@ class Edit extends Component {
         }
         //dispatch to change_info with the state
         this.props.dispatch({
-            type: 'CHANGE_INFO',
+            type: 'UPDATE_INFO',
             payload: this.state
         })
         //dispatch to get_details to re-load details page with new DB info
@@ -40,22 +40,24 @@ class Edit extends Component {
         })
       
         this.props.history.push('/details')
+        console.log('payload', this.state)
     }
 
     //on cancel, reload details page, same dispatch as click on the details from home page
-    handleCancelChange = () => {
+    handleCancelChange = (id, history) => {
+        this.props.history.push(`/details`)
         this.props.dispatch({
             type: 'FETCH_DETAILS',
             payload: this.state
         })
-        this.props.history.push(`/details`)
+        
     }
 
     render() {
         return (
             <div>
                 
-                <button onClick={() => this.handleCancelChange(this.props.genres.id)}>Cancel Changes</button>
+                <button onClick={() => this.handleCancelChange(this.props.history, this.props.genres.id)}>Cancel Changes</button>
                 <button onClick={() => this.handleSaveChange(this.props.genres.id)}>Save Changes</button>
                 <p>Change movie name:</p>
                 <textarea onChange={this.handleNameChange}/>
@@ -69,7 +71,8 @@ class Edit extends Component {
 const mapStateToProps = (reduxStore) => {
     return {
         genres: reduxStore.genres,
-        details: reduxStore.details
+        details: reduxStore.details,
+        movies: reduxStore.movies
     }
 }
 

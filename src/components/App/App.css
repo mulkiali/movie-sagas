@@ -3,6 +3,22 @@
 }
 
 
+div.MovieList {
+  background-color: rgb(243, 233, 233);
+  height: 600px;
+  width: 600px;
+  overflow-y: scroll;
+  text-align: center;
+  margin-left: 300px;
+}
+
+ul {
+  list-style-type: none;
+  list-style-position: outside;
+  list-style-image: element(image);
+}
+
+
 .App-header {
   background-color: #222;
   height: 150px;
